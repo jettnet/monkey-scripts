@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Disable Oneclick Video Buttons
 // @namespace    https://github.com/jettnet/monkey-scripts
-// @version      1.0
+// @version      1.1
 // @description  Disable one click buttons on Amazon
 // @author       Jettnet
 // @match        https://www.amazon.com/gp/video/*
@@ -11,9 +11,11 @@
 (function() {
     'use strict';
 
-    // Just assume oneclick and order of children for now
-    for (var e of document.getElementsByClassName("oneclick")) {
-        e.children[0].disabled = true;
+    for (var e of document.getElementsByClassName("js-purchase-button")) {
+        for (var i of e.getElementsByTagName("input")) {
+            i.disabled = true;
+        }
+        e.disabled = true;
     }
 
 })();
